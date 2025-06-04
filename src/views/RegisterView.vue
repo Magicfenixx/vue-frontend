@@ -6,7 +6,7 @@
       <input v-model="email" type="email" placeholder="Email" class="border p-2 mb-4 w-full rounded" required />
       <input v-model="password" type="password" placeholder="Password" class="border p-2 mb-4 w-full rounded" required />
       <input v-model="confirmPassword" type="password" placeholder="Confirm Password" class="border p-2 mb-4 w-full rounded" required />
-      <button type="submit">Register</button>
+      <button type="submit" class="bg-blue-100">Register</button>
     </form>
     <p v-if="error" style="color:red">{{ error }}</p>
   </div>

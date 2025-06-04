@@ -5,12 +5,12 @@
       <input v-model="email" type="email" placeholder="Email" class="border p-2 mb-4 w-full rounded" required />
       <input v-model="password" type="password" placeholder="Password" class="border p-2 mb-4 w-full rounded" required />
       <p class="text-sm">
-        <RouterLink to="/forgot-password" class="text-blue-600 hover:underline">
+        <RouterLink to="/forgot-password" class="text-blue-100 hover:underline">
           Forgot your password?
         </RouterLink>
       </p>
       <p v-if="error" style="color:red">{{ error }}</p>
-      <button type="submit" class=" mt-5 w-full bg-blue-600 text-black py-2 rounded hover:bg-blue-700" >Login</button>
+      <button type="submit" class=" mt-5 w-full bg-blue-100 text-black py-2 rounded hover:bg-blue-700" >Login</button>
     </form>
   </div>
 </template>

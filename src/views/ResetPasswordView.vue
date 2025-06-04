@@ -2,7 +2,7 @@
   <div class="p-6 max-w-md mx-auto">
     <h1 class="text-2xl font-bold mb-4">Reset Password</h1>
 
-    <form @submit.prevent="submit">
+    <form @submit.prevent="submit" class="bg-white p-4 rounded shadow-md w-full max-w-md">
       <div class="mb-4">
         <label class="block font-medium">New Password</label>
         <input
@@ -25,7 +25,7 @@
         />
       </div>
 
-      <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded">
+      <button type="submit" class="bg-blue-100 text-black px-4 py-2 rounded">
         Reset Password
       </button>
 

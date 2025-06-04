@@ -14,7 +14,7 @@
 
         <div v-if="auth.isAuthenticated">
           <button
-            class="border border-white text-black hover:text-black"
+            class="border border-white bg-red-900 text-white hover:text-black"
             @click="handleLogout"
           >
             Logout

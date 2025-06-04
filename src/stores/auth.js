@@ -18,6 +18,15 @@ export const useAuthStore = defineStore('auth', {
   },
 
   actions: {
+
+    initializeAuthHeader() {
+      if (this.accessToken) {
+        api.defaults.headers.common['Authorization'] = `Bearer ${this.accessToken}`;
+      } else {
+        delete api.defaults.headers.common['Authorization'];
+      }
+    },
+
     async login({ email, password }) {
             const res = await api.post('http://localhost:8000/api/login', { email, password })
 
@@ -54,8 +63,10 @@ export const useAuthStore = defineStore('auth', {
     // },
 
     async fetchUser() {
-      if (!this.accessToken) return
-
+      if (!this.accessToken){
+      this.user = null;
+      return
+      }
       try {
         const res = await api.get('/api/me', {
           headers: { Authorization: `Bearer ${this.accessToken}` },
@@ -70,8 +81,8 @@ export const useAuthStore = defineStore('auth', {
     async refresh() {    	
       if (!this.refreshToken || this.refreshFailed) {
         this.logout();
-        toast.error('Refresh disabled or missing token')
-        // return;
+        toast.error('Session expired. Please log in again.');
+        throw new Error('No refresh token or refresh failed previously.');
       }
       try {
         const res = await api.post('http://localhost:8000/api/refresh', {
@@ -79,12 +90,13 @@ export const useAuthStore = defineStore('auth', {
         })
 
         this.setTokens(res.data)
-        toast.success('Refresh Succesful')
+        toast.success('Session refreshed successfully');
         
       } catch (err) {
-        this.refreshFailed = true
-        this.logout()
-        throw err
+        this.refreshFailed = true;
+        this.logout();
+        toast.error('Session expired. Please log in again.');
+        throw err;
       }
     },
 
@@ -93,6 +105,8 @@ export const useAuthStore = defineStore('auth', {
       this.refreshToken = refresh_token
       localStorage.setItem('access_token', access_token)
       localStorage.setItem('refresh_token', refresh_token)
+      api.defaults.headers.common['Authorization'] = `Bearer ${access_token}`
+      this.refreshFailed = false;
     },
 
     logout() {
@@ -103,6 +117,7 @@ export const useAuthStore = defineStore('auth', {
 
       localStorage.removeItem('access_token')
       localStorage.removeItem('refresh_token')
+      delete api.defaults.headers.common['Authorization']
 
       resetLock()
 

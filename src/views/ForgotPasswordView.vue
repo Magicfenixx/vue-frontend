@@ -1,9 +1,9 @@
 <template>
   <div class="p-6 max-w-md mx-auto">
-    <h1 class="text-2xl font-bold mb-4">Forgot Password</h1>
+    <h1 class="text-2xl font-bold mb-10 w-101">Forgot Password</h1>
 
-    <form @submit.prevent="submit">
-      <div class="mb-4">
+    <form @submit.prevent="submit" class="bg-white p-4 rounded shadow-md w-full max-w-md">
+      <div class="mb-6">
         <label class="block font-medium">Email</label>
         <input
           v-model="email"
@@ -14,7 +14,7 @@
         />
       </div>
 
-      <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">
+      <button type="submit" class="text-black bg-blue-100 px-4 py-2 rounded">
         Send Reset Link
       </button>
 

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="bg-white p-8 rounded shadow-md w-full max-w-md">
     <h1 class="text-xl font-bold mb-4">Users Dashboard</h1>
     <ul>
       <li v-for="user in users" :key="user.id">
